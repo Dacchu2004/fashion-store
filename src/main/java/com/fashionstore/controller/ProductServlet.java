@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.List;
 
 @WebServlet("/products")
@@ -45,16 +46,14 @@ public class ProductServlet extends HttpServlet {
 
             categories = categoryDAO.getAllCategories();
 
-            // SEARCH
+            // STEP 1: Get products (search OR category OR all)
+
             if (searchParam != null &&
                     !searchParam.trim().isEmpty()) {
 
                 products = productDAO.searchProducts(searchParam);
 
-            }
-
-            // CATEGORY FILTER
-            else if (categoryParam != null &&
+            } else if (categoryParam != null &&
                     !categoryParam.trim().isEmpty()) {
 
                 int categoryId =
@@ -63,33 +62,42 @@ public class ProductServlet extends HttpServlet {
                 products =
                         productDAO.getProductsByCategory(categoryId);
 
-            }
-
-            // SORT LOW TO HIGH
-            else if ("lowToHigh".equals(sortParam)) {
-
-                products =
-                        productDAO.sortProductsByPriceLowToHigh();
-
-            }
-
-            // SORT HIGH TO LOW
-            else if ("highToLow".equals(sortParam)) {
-
-                products =
-                        productDAO.sortProductsByPriceHighToLow();
-
-            }
-
-            // DEFAULT
-            else {
+            } else {
 
                 products = productDAO.getAllProducts();
             }
 
-            request.setAttribute("products", products);
+            // STEP 2: Sort the filtered results
 
+            if ("lowToHigh".equals(sortParam)) {
+
+                products.sort(
+                        Comparator.comparing(Product::getPrice)
+                );
+
+            } else if ("highToLow".equals(sortParam)) {
+
+                products.sort(
+                        Comparator.comparing(Product::getPrice)
+                                .reversed()
+                );
+            }
+
+            // Pass data to JSP
+
+            request.setAttribute("products", products);
             request.setAttribute("categories", categories);
+
+            // Pass filter state back so JSP can show selected values
+
+            request.setAttribute("selectedCategory",
+                    categoryParam != null ? categoryParam : "");
+
+            request.setAttribute("selectedSort",
+                    sortParam != null ? sortParam : "");
+
+            request.setAttribute("searchQuery",
+                    searchParam != null ? searchParam : "");
 
             request.getRequestDispatcher(
                             "/WEB-INF/views/products.jsp")

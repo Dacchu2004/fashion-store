@@ -4,6 +4,21 @@
 <%@ page import="com.fashionstore.model.Product" %>
 <%@ page import="com.fashionstore.model.Category" %>
 
+<%
+    String selectedCategory =
+            (String) request.getAttribute("selectedCategory");
+
+    String selectedSort =
+            (String) request.getAttribute("selectedSort");
+
+    String searchQuery =
+            (String) request.getAttribute("searchQuery");
+
+    if (selectedCategory == null) selectedCategory = "";
+    if (selectedSort == null) selectedSort = "";
+    if (searchQuery == null) searchQuery = "";
+%>
+
 <!DOCTYPE html>
 <html>
 
@@ -39,27 +54,26 @@
 
     </div>
 
-    <!-- FILTER SECTION -->
+    <!-- FILTER SECTION — SINGLE FORM -->
 
-    <div class="filter-section">
+    <form action="${pageContext.request.contextPath}/products"
+          method="get"
+          class="filter-section">
 
         <!-- SEARCH -->
 
-        <form action="${pageContext.request.contextPath}/products"
-              method="get"
-              class="search-box">
+        <div class="search-box">
 
             <input type="text"
                    name="search"
-                   placeholder="Search products..." />
+                   placeholder="Search products..."
+                   value="<%= searchQuery %>" />
 
-        </form>
+        </div>
 
         <!-- CATEGORY FILTER -->
 
-        <form action="${pageContext.request.contextPath}/products"
-              method="get"
-              class="category-filter">
+        <div class="category-filter">
 
             <select name="category"
                     onchange="this.form.submit()">
@@ -77,9 +91,17 @@
 
                         for (Category category : categories) {
 
+                            String catId =
+                                    String.valueOf(category.getCategoryId());
+
+                            String isSelected =
+                                    catId.equals(selectedCategory)
+                                            ? "selected" : "";
+
                 %>
 
-                <option value="<%= category.getCategoryId() %>">
+                <option value="<%= category.getCategoryId() %>"
+                        <%= isSelected %>>
 
                     <%= category.getCategoryName() %>
 
@@ -94,13 +116,11 @@
 
             </select>
 
-        </form>
+        </div>
 
         <!-- SORT -->
 
-        <form action="${pageContext.request.contextPath}/products"
-              method="get"
-              class="sort-filter">
+        <div class="sort-filter">
 
             <select name="sort"
                     onchange="this.form.submit()">
@@ -109,19 +129,21 @@
                     Sort By
                 </option>
 
-                <option value="lowToHigh">
+                <option value="lowToHigh"
+                        <%= "lowToHigh".equals(selectedSort) ? "selected" : "" %>>
                     Price: Low to High
                 </option>
 
-                <option value="highToLow">
+                <option value="highToLow"
+                        <%= "highToLow".equals(selectedSort) ? "selected" : "" %>>
                     Price: High to Low
                 </option>
 
             </select>
 
-        </form>
+        </div>
 
-    </div>
+    </form>
 
     <!-- PRODUCTS GRID -->
 

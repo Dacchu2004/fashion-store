@@ -28,70 +28,80 @@
 
         .success-card {
 
-            background-color: white;
+            background-color: var(--clr-surface);
 
-            padding: 50px;
+            padding: 60px 50px;
 
-            border-radius: 20px;
+            border-radius: var(--radius-xl);
 
             text-align: center;
 
-            max-width: 600px;
+            max-width: 560px;
 
             width: 100%;
 
-            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--clr-border-light);
         }
 
         .success-icon {
 
-            font-size: 70px;
+            font-size: 64px;
 
-            margin-bottom: 25px;
+            margin-bottom: 28px;
+            line-height: 1;
         }
 
         .success-title {
 
+            font-family: var(--font-heading);
             font-size: 36px;
+            font-weight: 600;
 
-            color: #222;
+            color: var(--clr-text);
 
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         .success-message {
 
-            color: #666;
+            color: var(--clr-text-secondary);
 
-            font-size: 17px;
+            font-size: 16px;
 
             line-height: 1.8;
 
-            margin-bottom: 35px;
+            margin-bottom: 36px;
         }
 
         .success-btn {
 
             display: inline-block;
 
-            background-color: #7c3aed;
+            background-color: var(--clr-primary);
 
-            color: white;
+            color: #fff;
 
-            padding: 15px 28px;
+            padding: 14px 32px;
 
-            border-radius: 12px;
+            border-radius: var(--radius-sm);
 
             text-decoration: none;
 
+            font-family: var(--font-body);
             font-weight: 600;
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
 
-            transition: 0.3s ease;
+            transition: var(--transition);
         }
 
         .success-btn:hover {
 
-            background-color: #5b21b6;
+            background-color: var(--clr-primary-dark);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
         }
 
     </style>

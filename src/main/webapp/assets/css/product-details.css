@@ -1,7 +1,9 @@
-/* PRODUCT DETAILS PAGE */
+/* =========================================
+   PRODUCT DETAILS PAGE — Sage & Gold
+   ========================================= */
 
 .product-details-page {
-    padding: 50px 0;
+    padding: 50px 0 20px;
 }
 
 /* MAIN CONTAINER */
@@ -14,24 +16,35 @@
 
     gap: 50px;
 
-    background-color: white;
+    background-color: var(--clr-surface);
 
-    padding: 40px;
+    padding: 44px;
 
-    border-radius: 20px;
+    border-radius: var(--radius-xl);
 
-    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--clr-border-light);
 }
 
 /* PRODUCT IMAGE */
+
+.product-image-section {
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+}
 
 .product-image-section img {
 
     width: 100%;
 
-    border-radius: 16px;
+    border-radius: var(--radius-lg);
 
     object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.product-image-section:hover img {
+    transform: scale(1.03);
 }
 
 /* PRODUCT INFO */
@@ -49,64 +62,73 @@
 
 .product-brand {
 
-    color: #7c3aed;
+    color: var(--clr-primary-light);
 
-    font-size: 16px;
-
+    font-size: 12px;
     font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 /* PRODUCT NAME */
 
 .product-title {
 
+    font-family: var(--font-heading);
     font-size: 40px;
+    font-weight: 600;
 
-    color: #222;
+    color: var(--clr-text);
 
     margin-bottom: 20px;
+    line-height: 1.15;
 }
 
 /* DESCRIPTION */
 
 .product-description {
 
-    color: #666;
+    color: var(--clr-text-secondary);
 
     line-height: 1.8;
+    font-size: 15px;
 
-    margin-bottom: 25px;
+    margin-bottom: 28px;
 }
 
 /* PRICE */
 
 .product-price {
 
-    font-size: 34px;
+    font-size: 32px;
 
-    font-weight: bold;
+    font-weight: 700;
 
-    color: #7c3aed;
+    color: var(--clr-accent-dark);
+    font-family: var(--font-body);
 
-    margin-bottom: 30px;
+    margin-bottom: 32px;
 }
 
 /* VARIANTS */
 
 .variant-section {
 
-    margin-bottom: 30px;
+    margin-bottom: 28px;
 }
 
 .variant-title {
 
-    font-size: 18px;
-
+    font-family: var(--font-body);
+    font-size: 13px;
     font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--clr-text-secondary);
 
-    margin-bottom: 12px;
+    margin-bottom: 14px;
 }
 
 .variant-list {
@@ -115,33 +137,57 @@
 
     flex-wrap: wrap;
 
-    gap: 12px;
+    gap: 10px;
 }
 
 .variant-item {
 
     padding: 10px 18px;
 
-    border: 1px solid #ddd;
+    border: 1.5px solid var(--clr-border);
 
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
 
-    background-color: #f8f8f8;
+    background-color: var(--clr-surface-alt);
 
-    font-size: 14px;
+    font-size: 13px;
+    font-family: var(--font-body);
+    color: var(--clr-text);
+
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.variant-item:hover {
+    border-color: var(--clr-primary-light);
+    background-color: var(--clr-surface);
+}
+
+.variant-item input[type="radio"]:checked + .variant-item,
+.variant-item:has(input[type="radio"]:checked) {
+    border-color: var(--clr-primary);
+    background-color: rgba(92, 107, 84, 0.08);
 }
 
 /* STOCK */
 
 .stock-status {
 
-    margin-bottom: 25px;
+    margin-bottom: 24px;
 
-    font-size: 16px;
+    font-size: 14px;
 
     font-weight: 600;
 
-    color: green;
+    color: var(--clr-success);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.stock-status::before {
+    content: '●';
+    font-size: 10px;
 }
 
 /* BUTTON */
@@ -150,26 +196,31 @@
 
     width: fit-content;
 
-    background-color: #7c3aed;
+    background-color: var(--clr-primary);
 
-    color: white;
+    color: #fff;
 
-    padding: 14px 24px;
+    padding: 15px 32px;
 
-    border-radius: 10px;
+    border-radius: var(--radius-sm);
 
     text-decoration: none;
-
-    transition: 0.3s ease;
-
-    font-size: 16px;
-
+    font-family: var(--font-body);
+    font-size: 13px;
     font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    transition: var(--transition);
+    border: none;
+    cursor: pointer;
 }
 
 .add-to-cart-btn:hover {
 
-    background-color: #5b21b6;
+    background-color: var(--clr-primary-dark);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
 }
 
 /* RESPONSIVE */
@@ -191,7 +242,7 @@
 
     .product-details-container {
 
-        padding: 20px;
+        padding: 24px;
     }
 
     .product-title {
@@ -201,6 +252,6 @@
 
     .product-price {
 
-        font-size: 28px;
+        font-size: 26px;
     }
 }

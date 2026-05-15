@@ -1,4 +1,6 @@
-/* AUTH PAGE */
+/* =========================================
+   AUTH PAGES (Login + Register) — Sage & Gold
+   ========================================= */
 
 .auth-page {
 
@@ -11,6 +13,12 @@
     align-items: center;
 
     padding: 50px 20px;
+
+    background: linear-gradient(
+        160deg,
+        var(--clr-bg) 0%,
+        var(--clr-surface-alt) 100%
+    );
 }
 
 /* AUTH CONTAINER */
@@ -18,15 +26,16 @@
 .auth-container {
 
     width: 100%;
-    max-width: 500px;
+    max-width: 480px;
 
-    background-color: white;
+    background-color: var(--clr-surface);
 
-    padding: 40px;
+    padding: 48px 40px;
 
-    border-radius: 20px;
+    border-radius: var(--radius-xl);
 
-    box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--clr-border-light);
 }
 
 /* TITLE */
@@ -35,20 +44,23 @@
 
     text-align: center;
 
-    font-size: 34px;
+    font-family: var(--font-heading);
+    font-size: 36px;
+    font-weight: 600;
 
-    color: #222;
+    color: var(--clr-text);
 
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .auth-subtitle {
 
     text-align: center;
 
-    color: #777;
+    color: var(--clr-text-muted);
+    font-size: 15px;
 
-    margin-bottom: 35px;
+    margin-bottom: 36px;
 }
 
 /* FORM */
@@ -73,61 +85,79 @@
 
 .form-group label {
 
-    margin-bottom: 8px;
+    margin-bottom: 7px;
 
     font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
 
-    color: #333;
+    color: var(--clr-text-secondary);
 }
 
 /* INPUTS */
 
 .form-group input {
 
-    padding: 14px 16px;
+    padding: 14px 18px;
 
-    border: 1px solid #ddd;
+    border: 1px solid var(--clr-border);
 
-    border-radius: 10px;
+    border-radius: var(--radius-sm);
 
+    font-family: var(--font-body);
     font-size: 15px;
 
     outline: none;
 
-    transition: 0.3s ease;
+    background-color: var(--clr-surface-alt);
+    color: var(--clr-text);
+
+    transition: var(--transition);
+}
+
+.form-group input::placeholder {
+    color: var(--clr-text-muted);
 }
 
 .form-group input:focus {
 
-    border-color: #7c3aed;
+    border-color: var(--clr-primary);
+    background-color: var(--clr-surface);
+    box-shadow: 0 0 0 3px rgba(92, 107, 84, 0.1);
 }
 
 /* BUTTON */
 
 .auth-btn {
 
-    background-color: #7c3aed;
+    background-color: var(--clr-primary);
 
-    color: white;
+    color: #fff;
 
     border: none;
 
     padding: 15px;
 
-    border-radius: 10px;
+    border-radius: var(--radius-sm);
 
-    font-size: 16px;
-
+    font-family: var(--font-body);
+    font-size: 13px;
     font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 
     cursor: pointer;
 
-    transition: 0.3s ease;
+    transition: var(--transition);
+    margin-top: 6px;
 }
 
 .auth-btn:hover {
 
-    background-color: #5b21b6;
+    background-color: var(--clr-primary-dark);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
 }
 
 /* LINKS */
@@ -136,52 +166,62 @@
 
     text-align: center;
 
-    margin-top: 20px;
+    margin-top: 24px;
 
-    color: #666;
+    color: var(--clr-text-muted);
+    font-size: 14px;
 }
 
 .auth-link a {
 
-    color: #7c3aed;
+    color: var(--clr-primary);
 
     text-decoration: none;
 
     font-weight: 600;
+    transition: var(--transition);
+}
+
+.auth-link a:hover {
+    color: var(--clr-accent-dark);
 }
 
 /* ERROR MESSAGE */
 
 .error-message {
 
-    background-color: #fee2e2;
+    background-color: #fef2f2;
 
-    color: #dc2626;
+    color: var(--clr-error);
 
-    padding: 14px;
+    padding: 14px 18px;
 
-    border-radius: 10px;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(184, 66, 51, 0.15);
 
     margin-bottom: 20px;
 
     text-align: center;
+    font-size: 14px;
 }
 
 /* SUCCESS MESSAGE */
 
 .success-message {
 
-    background-color: #dcfce7;
+    background-color: #f0fdf4;
 
-    color: #16a34a;
+    color: var(--clr-success);
 
-    padding: 14px;
+    padding: 14px 18px;
 
-    border-radius: 10px;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(74, 124, 89, 0.15);
 
     margin-bottom: 20px;
 
     text-align: center;
+    font-size: 14px;
 }
 
 /* RESPONSIVE */
@@ -190,11 +230,12 @@
 
     .auth-container {
 
-        padding: 25px;
+        padding: 32px 24px;
+        border-radius: var(--radius-lg);
     }
 
     .auth-title {
 
-        font-size: 28px;
+        font-size: 30px;
     }
 }

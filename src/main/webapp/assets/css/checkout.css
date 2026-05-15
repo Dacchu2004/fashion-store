@@ -1,18 +1,32 @@
-/* CHECKOUT PAGE */
+/* =========================================
+   CHECKOUT PAGE — Sage & Gold
+   ========================================= */
 
 .checkout-page {
-    padding: 50px 0;
+    padding: 50px 0 20px;
 }
 
 /* PAGE TITLE */
 
 .checkout-title {
-    font-size: 36px;
-    font-weight: 700;
+    font-family: var(--font-heading);
+    font-size: 40px;
+    font-weight: 600;
 
-    color: #222;
+    color: var(--clr-text);
 
     margin-bottom: 40px;
+    text-align: center;
+}
+
+.checkout-title::after {
+    content: '';
+    display: block;
+    width: 45px;
+    height: 3px;
+    background-color: var(--clr-accent);
+    margin: 14px auto 0;
+    border-radius: 2px;
 }
 
 /* MAIN LAYOUT */
@@ -23,86 +37,96 @@
 
     grid-template-columns: 2fr 1fr;
 
-    gap: 40px;
+    gap: 36px;
 }
 
 /* FORM SECTION */
 
 .checkout-form-section {
 
-    background-color: white;
+    background-color: var(--clr-surface);
 
-    padding: 35px;
+    padding: 38px;
 
-    border-radius: 16px;
+    border-radius: var(--radius-xl);
 
-    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--clr-border-light);
 }
 
 /* FORM TITLE */
 
 .form-section-title {
 
-    font-size: 24px;
+    font-family: var(--font-heading);
+    font-size: 26px;
 
     font-weight: 600;
 
-    margin-bottom: 25px;
+    margin-bottom: 28px;
 
-    color: #222;
+    color: var(--clr-text);
 }
 
 /* FORM GROUP */
 
-.form-group {
+.checkout-form-section .form-group {
 
     margin-bottom: 22px;
 }
 
-.form-group label {
+.checkout-form-section .form-group label {
 
     display: block;
 
     margin-bottom: 8px;
 
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
 
-    color: #444;
+    color: var(--clr-text-secondary);
 }
 
-.form-group input,
-.form-group textarea,
-.form-group select {
+.checkout-form-section .form-group input,
+.checkout-form-section .form-group textarea,
+.checkout-form-section .form-group select {
 
     width: 100%;
 
-    padding: 14px 16px;
+    padding: 14px 18px;
 
-    border: 1px solid #ddd;
+    border: 1px solid var(--clr-border);
 
-    border-radius: 10px;
+    border-radius: var(--radius-sm);
 
+    font-family: var(--font-body);
     font-size: 15px;
+    color: var(--clr-text);
+    background-color: var(--clr-surface-alt);
 
     outline: none;
 
-    transition: 0.3s ease;
+    transition: var(--transition);
 }
 
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus {
+.checkout-form-section .form-group input:focus,
+.checkout-form-section .form-group textarea:focus,
+.checkout-form-section .form-group select:focus {
 
-    border-color: #7c3aed;
+    border-color: var(--clr-primary);
+    background-color: var(--clr-surface);
+    box-shadow: 0 0 0 3px rgba(92, 107, 84, 0.1);
 }
 
 /* TEXTAREA */
 
-.form-group textarea {
+.checkout-form-section .form-group textarea {
 
     resize: vertical;
 
-    min-height: 120px;
+    min-height: 100px;
 }
 
 /* GRID */
@@ -113,33 +137,38 @@
 
     grid-template-columns: 1fr 1fr;
 
-    gap: 20px;
+    gap: 18px;
 }
 
 /* ORDER SUMMARY */
 
 .order-summary {
 
-    background-color: white;
+    background-color: var(--clr-surface);
 
-    padding: 30px;
+    padding: 32px;
 
-    border-radius: 16px;
+    border-radius: var(--radius-xl);
 
     height: fit-content;
 
-    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--clr-border-light);
+    position: sticky;
+    top: 100px;
 }
 
 /* SUMMARY TITLE */
 
 .summary-title {
 
-    font-size: 24px;
+    font-family: var(--font-heading);
+    font-size: 26px;
 
     font-weight: 600;
 
-    margin-bottom: 25px;
+    margin-bottom: 24px;
+    color: var(--clr-text);
 }
 
 /* SUMMARY ROW */
@@ -150,9 +179,16 @@
 
     justify-content: space-between;
 
-    margin-bottom: 18px;
+    margin-bottom: 16px;
 
-    color: #555;
+    color: var(--clr-text-secondary);
+    font-size: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--clr-border-light);
+}
+
+.summary-row:last-of-type {
+    border-bottom: none;
 }
 
 /* TOTAL */
@@ -167,11 +203,11 @@
 
     font-weight: 700;
 
-    color: #222;
+    color: var(--clr-text);
 
     padding-top: 20px;
 
-    border-top: 1px solid #eee;
+    border-top: 2px solid var(--clr-border);
 
     margin-top: 20px;
 }
@@ -182,30 +218,34 @@
 
     width: 100%;
 
-    margin-top: 30px;
+    margin-top: 28px;
 
     padding: 16px;
 
     border: none;
 
-    border-radius: 12px;
+    border-radius: var(--radius-sm);
 
-    background-color: #7c3aed;
+    background-color: var(--clr-primary);
 
-    color: white;
+    color: #fff;
 
-    font-size: 16px;
-
+    font-family: var(--font-body);
+    font-size: 13px;
     font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 
     cursor: pointer;
 
-    transition: 0.3s ease;
+    transition: var(--transition);
 }
 
 .place-order-btn:hover {
 
-    background-color: #5b21b6;
+    background-color: var(--clr-primary-dark);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
 }
 
 /* RESPONSIVE */
@@ -215,6 +255,10 @@
     .checkout-container {
 
         grid-template-columns: 1fr;
+    }
+
+    .order-summary {
+        position: static;
     }
 }
 
@@ -228,11 +272,11 @@
     .checkout-form-section,
     .order-summary {
 
-        padding: 20px;
+        padding: 24px;
     }
 
     .checkout-title {
 
-        font-size: 28px;
+        font-size: 30px;
     }
 }

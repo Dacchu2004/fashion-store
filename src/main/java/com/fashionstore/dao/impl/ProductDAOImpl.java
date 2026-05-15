@@ -287,7 +287,7 @@ public class ProductDAOImpl implements ProductDAO {
 
         String query =
                 "SELECT * FROM products " +
-                        "ORDER BY created_at DESC LIMIT 10";
+                        "ORDER BY created_at DESC LIMIT 12";
 
         return getProductsByQuery(query);
     }

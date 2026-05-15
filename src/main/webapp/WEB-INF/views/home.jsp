@@ -121,7 +121,7 @@
                             ₹ <%= product.getPrice() %>
                         </p>
 
-                        <a href="#"
+                        <a href="${pageContext.request.contextPath}/product-details?id=<%= product.getProductId() %>"
                            class="btn">
 
                             View Details
