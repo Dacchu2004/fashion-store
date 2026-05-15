@@ -2,10 +2,18 @@
 
 <%@ page import="java.util.List" %>
 <%@ page import="com.fashionstore.model.Product" %>
+<%@ page import="com.fashionstore.model.Category" %>
+<%@ page import="com.fashionstore.model.User" %>
 
 <%
     List<Product> latestProducts =
             (List<Product>) request.getAttribute("latestProducts");
+
+    List<Category> categories =
+            (List<Category>) request.getAttribute("categories");
+
+    User loggedUser =
+            (User) session.getAttribute("loggedInUser");
 %>
 
 <!DOCTYPE html>
@@ -13,7 +21,7 @@
 
 <head>
 
-    <title>Fashion Store</title>
+    <title>Fashion Store — Home</title>
 
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/assets/css/style.css">
@@ -33,52 +41,102 @@
         <!-- HERO SECTION -->
         <section class="hero-section">
 
+            <div class="hero-overlay"></div>
+
             <div class="hero-content">
 
+                <span class="hero-badge">New Season 2026</span>
+
                 <h1>
-                    Discover Your Fashion Style
+                    Elevate Your<br>
+                    <span class="hero-accent">Everyday Style</span>
                 </h1>
 
                 <p>
-                    Explore the latest trends in fashion,
-                    footwear, and accessories.
+                    Discover curated collections of clothing,
+                    footwear, and accessories — crafted for
+                    those who appreciate the art of dressing well.
                 </p>
 
-                <a href="${pageContext.request.contextPath}/products"
-                   class="btn">
+                <div class="hero-actions">
 
-                    Shop Now
+                    <a href="${pageContext.request.contextPath}/products"
+                       class="btn btn-hero-primary">
 
-                </a>
+                        Explore Collection
+
+                    </a>
+
+                    <a href="#categories"
+                       class="btn btn-hero-secondary">
+
+                        Browse Categories ↓
+
+                    </a>
+
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Products</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Brands</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-number">Free</span>
+                        <span class="stat-label">Shipping</span>
+                    </div>
+                </div>
 
             </div>
 
         </section>
 
         <!-- CATEGORY SECTION -->
-        <section class="category-section">
+        <section class="category-section" id="categories">
 
-            <h2 class="section-title">
-                Categories
-            </h2>
+            <div class="section-header">
+                <span class="section-label">Browse By</span>
+                <h2 class="section-title">
+                    Shop Categories
+                </h2>
+            </div>
 
             <div class="category-grid">
 
-                <div class="category-card">
-                    <h3>Men</h3>
-                </div>
+                <%
+                    // Category icons/emojis for visual flair
+                    String[] categoryIcons = {"👔", "👗", "👟", "⌚", "🧥", "👜", "🧢", "👕"};
+                    int iconIndex = 0;
 
-                <div class="category-card">
-                    <h3>Women</h3>
-                </div>
+                    if (categories != null && !categories.isEmpty()) {
 
-                <div class="category-card">
-                    <h3>Footwear</h3>
-                </div>
+                        for (Category category : categories) {
 
-                <div class="category-card">
-                    <h3>Accessories</h3>
-                </div>
+                            String icon = categoryIcons[iconIndex % categoryIcons.length];
+                            iconIndex++;
+                %>
+
+                <a href="${pageContext.request.contextPath}/products?category=<%= category.getCategoryId() %>"
+                   class="category-card">
+
+                    <span class="category-icon"><%= icon %></span>
+
+                    <h3><%= category.getCategoryName() %></h3>
+
+                    <span class="category-arrow">→</span>
+
+                </a>
+
+                <%
+                        }
+                    }
+                %>
 
             </div>
 
@@ -87,9 +145,16 @@
         <!-- LATEST PRODUCTS -->
         <section class="product-section">
 
-            <h2 class="section-title">
-                Latest Products
-            </h2>
+            <div class="section-header">
+                <span class="section-label">Just Arrived</span>
+                <h2 class="section-title">
+                    Latest Products
+                </h2>
+                <a href="${pageContext.request.contextPath}/products"
+                   class="section-link">
+                    View All →
+                </a>
+            </div>
 
             <div class="product-grid">
 
@@ -97,15 +162,29 @@
                     if (latestProducts != null &&
                             !latestProducts.isEmpty()) {
 
+                        int delay = 0;
                         for (Product product : latestProducts) {
                 %>
 
-                <div class="product-card">
+                <% String delayStyle = "animation-delay:" + delay + "ms"; %>
+                <div class="product-card"
+                     style="<%= delayStyle %>">
 
-                    <img
-                        src="${pageContext.request.contextPath}/<%= product.getImageUrl() %>"
-                        alt="Product Image"
-                        class="product-image">
+                    <div class="product-image-wrapper">
+
+                        <img
+                            src="${pageContext.request.contextPath}/<%= product.getImageUrl() %>"
+                            alt="<%= product.getName() %>"
+                            class="product-image">
+
+                        <div class="product-overlay">
+                            <a href="${pageContext.request.contextPath}/product-details?id=<%= product.getProductId() %>"
+                               class="overlay-btn">
+                                Quick View
+                            </a>
+                        </div>
+
+                    </div>
 
                     <div class="product-info">
 
@@ -117,22 +196,23 @@
                             <%= product.getName() %>
                         </h3>
 
-                        <p class="product-price">
-                            ₹ <%= product.getPrice() %>
-                        </p>
+                        <div class="product-footer">
+                            <p class="product-price">
+                                ₹<%= product.getPrice() %>
+                            </p>
 
-                        <a href="${pageContext.request.contextPath}/product-details?id=<%= product.getProductId() %>"
-                           class="btn">
-
-                            View Details
-
-                        </a>
+                            <a href="${pageContext.request.contextPath}/product-details?id=<%= product.getProductId() %>"
+                               class="product-link">
+                                Details →
+                            </a>
+                        </div>
 
                     </div>
 
                 </div>
 
                 <%
+                            delay += 60;
                         }
                     }
                 %>
@@ -148,4 +228,4 @@
 
 </body>
 
-</html>ś
+</html>

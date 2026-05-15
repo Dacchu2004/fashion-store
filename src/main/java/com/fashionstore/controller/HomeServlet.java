@@ -1,7 +1,10 @@
 package com.fashionstore.controller;
 
+import com.fashionstore.dao.CategoryDAO;
 import com.fashionstore.dao.ProductDAO;
+import com.fashionstore.dao.impl.CategoryDAOImpl;
 import com.fashionstore.dao.impl.ProductDAOImpl;
+import com.fashionstore.model.Category;
 import com.fashionstore.model.Product;
 
 import jakarta.servlet.ServletException;
@@ -18,11 +21,13 @@ import java.util.List;
 public class HomeServlet extends HttpServlet {
 
     private ProductDAO productDAO;
+    private CategoryDAO categoryDAO;
 
     @Override
     public void init() throws ServletException {
 
         productDAO = new ProductDAOImpl();
+        categoryDAO = new CategoryDAOImpl();
     }
 
     @Override
@@ -39,6 +44,13 @@ public class HomeServlet extends HttpServlet {
             return;
         }
 
+        // FETCH CATEGORIES FROM DATABASE
+        List<Category> categories =
+                categoryDAO.getAllCategories();
+
+        request.setAttribute("categories", categories);
+
+        // FETCH LATEST PRODUCTS
         List<Product> latestProducts =
                 productDAO.getLatestProducts();
 
