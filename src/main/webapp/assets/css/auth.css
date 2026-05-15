@@ -1,0 +1,200 @@
+/* AUTH PAGE */
+
+.auth-page {
+
+    min-height: 80vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 50px 20px;
+}
+
+/* AUTH CONTAINER */
+
+.auth-container {
+
+    width: 100%;
+    max-width: 500px;
+
+    background-color: white;
+
+    padding: 40px;
+
+    border-radius: 20px;
+
+    box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+}
+
+/* TITLE */
+
+.auth-title {
+
+    text-align: center;
+
+    font-size: 34px;
+
+    color: #222;
+
+    margin-bottom: 10px;
+}
+
+.auth-subtitle {
+
+    text-align: center;
+
+    color: #777;
+
+    margin-bottom: 35px;
+}
+
+/* FORM */
+
+.auth-form {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+}
+
+/* FORM GROUP */
+
+.form-group {
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+.form-group label {
+
+    margin-bottom: 8px;
+
+    font-weight: 600;
+
+    color: #333;
+}
+
+/* INPUTS */
+
+.form-group input {
+
+    padding: 14px 16px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 10px;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition: 0.3s ease;
+}
+
+.form-group input:focus {
+
+    border-color: #7c3aed;
+}
+
+/* BUTTON */
+
+.auth-btn {
+
+    background-color: #7c3aed;
+
+    color: white;
+
+    border: none;
+
+    padding: 15px;
+
+    border-radius: 10px;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.auth-btn:hover {
+
+    background-color: #5b21b6;
+}
+
+/* LINKS */
+
+.auth-link {
+
+    text-align: center;
+
+    margin-top: 20px;
+
+    color: #666;
+}
+
+.auth-link a {
+
+    color: #7c3aed;
+
+    text-decoration: none;
+
+    font-weight: 600;
+}
+
+/* ERROR MESSAGE */
+
+.error-message {
+
+    background-color: #fee2e2;
+
+    color: #dc2626;
+
+    padding: 14px;
+
+    border-radius: 10px;
+
+    margin-bottom: 20px;
+
+    text-align: center;
+}
+
+/* SUCCESS MESSAGE */
+
+.success-message {
+
+    background-color: #dcfce7;
+
+    color: #16a34a;
+
+    padding: 14px;
+
+    border-radius: 10px;
+
+    margin-bottom: 20px;
+
+    text-align: center;
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 600px) {
+
+    .auth-container {
+
+        padding: 25px;
+    }
+
+    .auth-title {
+
+        font-size: 28px;
+    }
+}
