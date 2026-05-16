@@ -110,16 +110,21 @@
             <div class="category-grid">
 
                 <%
-                    // Category icons/emojis for visual flair
-                    String[] categoryIcons = {"👔", "👗", "👟", "⌚", "🧥", "👜", "🧢", "👕"};
-                    int iconIndex = 0;
+                    // Only show these 5 categories on home page with correct emojis
+                    String[] homeCategoryNames = {"Men", "Women", "Kids", "Footwear", "Bags"};
+                    String[] homeCategoryIcons = {"👔", "👗", "👶", "👟", "👜"};
 
                     if (categories != null && !categories.isEmpty()) {
 
-                        for (Category category : categories) {
+                        for (int i = 0; i < homeCategoryNames.length; i++) {
 
-                            String icon = categoryIcons[iconIndex % categoryIcons.length];
-                            iconIndex++;
+                            String targetName = homeCategoryNames[i];
+                            String icon = homeCategoryIcons[i];
+
+                            // Find the matching category from DB
+                            for (Category category : categories) {
+
+                                if (category.getCategoryName().equalsIgnoreCase(targetName)) {
                 %>
 
                 <a href="${pageContext.request.contextPath}/products?category=<%= category.getCategoryId() %>"
@@ -134,6 +139,9 @@
                 </a>
 
                 <%
+                                    break;
+                                }
+                            }
                         }
                     }
                 %>
